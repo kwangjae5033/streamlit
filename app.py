@@ -1,7 +1,7 @@
 import streamlit as st
 from datetime import time, datetime
 
-st.header('st.slider')
+st.header('st.slider 에 대해서 알아보겠습니다')
 
 # Example 1
 
