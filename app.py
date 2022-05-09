@@ -146,7 +146,7 @@ with PLC() as Delac_1_comm, PLC() as Delac_2_comm:
                 fig = ff.create_distplot(hist_data, group_labels, show_hist=False, colors=colors, curve_type='kde')
                 st.write(fig)
 
-        time.sleep(60 - time.time() % 60)
+        time.sleep(60 - time.time() % 15)
         print()
 ##############################################################
 
