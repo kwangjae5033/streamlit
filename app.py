@@ -41,10 +41,10 @@ warnings.filterwarnings('ignore')
 
 ####################################################################################
 ## Start of the page
-novelis_logo = Image.open("novelis.png")
+# novelis_logo = Image.open("novelis.png")
+#page_icon = novelis_logo,
 st.set_page_config(
     page_title = 'Reduction Black Dross / Zone3 Temp Prediction Dashboard',
-    page_icon = novelis_logo,
     layout = 'wide'
 )
 
