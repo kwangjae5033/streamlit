@@ -4,11 +4,6 @@ st.set_page_config(
     page_title = 'Reduction Black Dross / Zone3 Temp Prediction Dashboard',
     layout = 'wide')
 
-import os
-# from multiprocessing import Process
-
-from PIL import Image
-
 import plotly.express as px
 import plotly.figure_factory as ff
 
@@ -17,30 +12,12 @@ import schedule
 import datetime
 from datetime import date
 import PIconnect as PI
-from pylogix import PLC
 
 import pandas as pd
 import numpy as np
 
-import itertools
-
-import statsmodels.api as sm
-from statsmodels.tsa.stattools import adfuller
-from statsmodels.stats.outliers_influence import variance_inflation_factor
-from scipy import stats
-
 import pickle
-from sklearn.model_selection import train_test_split
-from sklearn import linear_model
-from sklearn.metrics import mean_squared_error
-import math
 
-import seaborn as sns
-from matplotlib import pyplot as plt
-
-import missingno as msno
-
-#ignore warnings
 import warnings
 warnings.filterwarnings('ignore')
 
