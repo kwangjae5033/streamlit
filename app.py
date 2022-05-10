@@ -102,37 +102,35 @@ while True:
 
     with placeholder.container():
 
-        st.dataframe(PI_df)
-
-        # Current Zone3 Temp and Prediction
-        Delac_1_z3_now, Delac_1_z3_hat = st.columns(2)
-        st.text(" ")
-        st.text(" ")
-        Delac_2_z3_now, Delac_2_z3_hat = st.columns(2)
-        st.text(" ")
-        st.text(" ")
-        Delac_1_z4_now, Delac_1_z4_hat = st.columns(2)
-        st.text(" ")
-        st.text(" ")
-        Delac_2_z4_now, Delac_2_z4_hat = st.columns(2)
-        st.text(" ")
-        st.text(" ")
-
-        Delac_1_z3_now.metric(label='Current Delac1 Zone3 Temp 🔥', value=PI_df['Delac_1 WTCT3'].iloc[-1])
-        Delac_1_z3_hat.metric(label='Pred Delac1 Zone3 Temp 📈', value=PI_df['Delac_1 Kiln_Temperature_Zone_3_Prediction'].iloc[-1])
-        Delac_2_z3_now.metric(label='Current Delac2 Zone3 Temp 🔥', value=PI_df['Delac_2 WTCT3'].iloc[-1])
-        Delac_2_z3_hat.metric(label='Pred Delac2 Zone3 Temp 📈', value=PI_df['Delac_2 Kiln_Temperature_Zone_3_Prediction'].iloc[-1])
-        Delac_1_z4_now.metric(label='Current Delac1 Zone4 Temp 🔥', value=PI_df['Delac_1 WTCT4'].iloc[-1])
-        Delac_1_z4_hat.metric(label='Pred Delac1 Zone4 Temp 📈', value=PI_df['Delac_1 Kiln_Temperature_Zone_4_Prediction'].iloc[-1])
-        Delac_2_z4_now.metric(label='Current Delac2 Zone4 Temp 🔥', value=PI_df['Delac_2 WTCT4'].iloc[-1])
-        Delac_2_z4_hat.metric(label='Pred Delac2 Zone4 Temp 📈', value=PI_df['Delac_2 Kiln_Temperature_Zone_4_Prediction'].iloc[-1])
-
-        st.text(" ")
-        st.text(" ")
-        st.text(" ")
-        st.text(" ")
-        st.text(" ")
-        st.text(" ")
+        # # Current Zone3 Temp and Prediction
+        # Delac_1_z3_now, Delac_1_z3_hat = st.columns(2)
+        # st.text(" ")
+        # st.text(" ")
+        # Delac_2_z3_now, Delac_2_z3_hat = st.columns(2)
+        # st.text(" ")
+        # st.text(" ")
+        # Delac_1_z4_now, Delac_1_z4_hat = st.columns(2)
+        # st.text(" ")
+        # st.text(" ")
+        # Delac_2_z4_now, Delac_2_z4_hat = st.columns(2)
+        # st.text(" ")
+        # st.text(" ")
+        #
+        # Delac_1_z3_now.metric(label='Current Delac1 Zone3 Temp 🔥', value=PI_df['Delac_1 WTCT3'].iloc[-1])
+        # Delac_1_z3_hat.metric(label='Pred Delac1 Zone3 Temp 📈', value=PI_df['Delac_1 Kiln_Temperature_Zone_3_Prediction'].iloc[-1])
+        # Delac_2_z3_now.metric(label='Current Delac2 Zone3 Temp 🔥', value=PI_df['Delac_2 WTCT3'].iloc[-1])
+        # Delac_2_z3_hat.metric(label='Pred Delac2 Zone3 Temp 📈', value=PI_df['Delac_2 Kiln_Temperature_Zone_3_Prediction'].iloc[-1])
+        # Delac_1_z4_now.metric(label='Current Delac1 Zone4 Temp 🔥', value=PI_df['Delac_1 WTCT4'].iloc[-1])
+        # Delac_1_z4_hat.metric(label='Pred Delac1 Zone4 Temp 📈', value=PI_df['Delac_1 Kiln_Temperature_Zone_4_Prediction'].iloc[-1])
+        # Delac_2_z4_now.metric(label='Current Delac2 Zone4 Temp 🔥', value=PI_df['Delac_2 WTCT4'].iloc[-1])
+        # Delac_2_z4_hat.metric(label='Pred Delac2 Zone4 Temp 📈', value=PI_df['Delac_2 Kiln_Temperature_Zone_4_Prediction'].iloc[-1])
+        #
+        # st.text(" ")
+        # st.text(" ")
+        # st.text(" ")
+        # st.text(" ")
+        # st.text(" ")
+        # st.text(" ")
 
         # create two columns for charts
         Delac_1_z3_true_vs_predict_chart, Delac_2_z3_true_vs_predict_chart = st.columns(2)
