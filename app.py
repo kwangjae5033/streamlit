@@ -4,6 +4,9 @@ st.set_page_config(
     page_title = 'Reduction Black Dross / Zone3 Temp Prediction Dashboard',
     layout = 'wide')
 
+import os
+# from multiprocessing import Process
+
 import plotly.express as px
 import plotly.figure_factory as ff
 
@@ -16,8 +19,16 @@ import PIconnect as PI
 import pandas as pd
 import numpy as np
 
+import itertools
+
 import pickle
 
+import seaborn as sns
+from matplotlib import pyplot as plt
+
+import missingno as msno
+
+#ignore warnings
 import warnings
 warnings.filterwarnings('ignore')
 
@@ -86,6 +97,8 @@ while True:
     PI_df = data_to_python(tag_list, today, tmr, '1m')
     PI_df.index = pd.to_datetime(PI_df.index).tz_localize(None)
     PI_df = PI_df.dropna()
+    PI_df = PI_df.tail(240)
+
 
     with placeholder.container():
 
