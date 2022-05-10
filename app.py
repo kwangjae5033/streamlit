@@ -49,14 +49,14 @@ with placeholder.container():
     st.text(" ")
     st.text(" ")
 
-    Delac_1_z3_now.metric(label='Current Delac1 Zone3 Temp 🔥', value=PI_df['Delac_1 WTCT3'].iloc[-1])
-    Delac_1_z3_hat.metric(label='Pred Delac1 Zone3 Temp 📈', value=PI_df['Delac_1 Kiln_Temperature_Zone_3_Prediction'].iloc[-1])
-    Delac_2_z3_now.metric(label='Current Delac2 Zone3 Temp 🔥', value=PI_df['Delac_2 WTCT3'].iloc[-1])
-    Delac_2_z3_hat.metric(label='Pred Delac2 Zone3 Temp 📈', value=PI_df['Delac_2 Kiln_Temperature_Zone_3_Prediction'].iloc[-1])
-    Delac_1_z4_now.metric(label='Current Delac1 Zone4 Temp 🔥', value=PI_df['Delac_1 WTCT4'].iloc[-1])
-    Delac_1_z4_hat.metric(label='Pred Delac1 Zone4 Temp 📈', value=PI_df['Delac_1 Kiln_Temperature_Zone_4_Prediction'].iloc[-1])
-    Delac_2_z4_now.metric(label='Current Delac2 Zone4 Temp 🔥', value=PI_df['Delac_2 WTCT4'].iloc[-1])
-    Delac_2_z4_hat.metric(label='Pred Delac2 Zone4 Temp 📈', value=PI_df['Delac_2 Kiln_Temperature_Zone_4_Prediction'].iloc[-1])
+    Delac_1_z3_now.metric(label='Current Delac1 Zone3 Temp 🔥', value=round(PI_df['Delac_1 WTCT3'].iloc[-1],1))
+    Delac_1_z3_hat.metric(label='Pred Delac1 Zone3 Temp 📈', value=round(PI_df['Delac_1 Kiln_Temperature_Zone_3_Prediction'].iloc[-1],1))
+    Delac_2_z3_now.metric(label='Current Delac2 Zone3 Temp 🔥', value=round(PI_df['Delac_2 WTCT3'].iloc[-1],1))
+    Delac_2_z3_hat.metric(label='Pred Delac2 Zone3 Temp 📈', value=round(PI_df['Delac_2 Kiln_Temperature_Zone_3_Prediction'].iloc[-1],1))
+    Delac_1_z4_now.metric(label='Current Delac1 Zone4 Temp 🔥', value=round(PI_df['Delac_1 WTCT4'].iloc[-1],1))
+    Delac_1_z4_hat.metric(label='Pred Delac1 Zone4 Temp 📈', value=round(PI_df['Delac_1 Kiln_Temperature_Zone_4_Prediction'].iloc[-1],1))
+    Delac_2_z4_now.metric(label='Current Delac2 Zone4 Temp 🔥', value=round(PI_df['Delac_2 WTCT4'].iloc[-1],1))
+    Delac_2_z4_hat.metric(label='Pred Delac2 Zone4 Temp 📈', value=round(PI_df['Delac_2 Kiln_Temperature_Zone_4_Prediction'].iloc[-1],1))
 
     st.text(" ")
     st.text(" ")
@@ -67,27 +67,43 @@ with placeholder.container():
 
     # create two columns for charts
     Delac_1_z3_true_vs_predict_chart, Delac_2_z3_true_vs_predict_chart = st.columns(2)
+    st.text(" ")
+    st.text(" ")
     Delac_1_z4_true_vs_predict_chart, Delac_2_z4_true_vs_predict_chart = st.columns(2)
+    st.text(" ")
+    st.text(" ")
 
     with Delac_1_z3_true_vs_predict_chart:
         st.markdown("### Delac_1_Z3 True vs Predict")
-        fig = px.line(PI_df, x=PI_df.index, y=['Delac_1 WTCT3', 'Delac_1 Kiln_Temperature_Zone_3_Prediction'], color_discrete_map={'Delac_1 WTCT3':'blue', 'Delac_1 Kiln_Temperature_Zone_3_Prediction':'red'})
-        st.write(fig)
+        fig = px.line(PI_df, x=PI_df.index, y=['Delac_1 WTCT3', 'Delac_1 Kiln_Temperature_Zone_3_Prediction'], color_discrete_map={'Delac_1 WTCT3':'#3bd6ae', 'Delac_1 Kiln_Temperature_Zone_3_Prediction':'#0000ff'}, labels={'Delac_1 WTCT3':'True', 'Delac_1 Kiln_Temperature_Zone_3_Prediction':'Prediction'})
+        # fig.add_hline(y=430, line_color='red')
+        fig.add_hrect(y0=425, y1=435, line_width=0, fillcolor="red", opacity=0.05)
+        fig.add_hline(y=PI_df['Delac_1 WTCT3'].mean(), line_dash='dash', line_color='black')
+        st.plotly_chart(fig)
 
     with Delac_2_z3_true_vs_predict_chart:
         st.markdown("### Delac_2_Z3 True vs Predict")
-        fig = px.line(PI_df, x=PI_df.index, y=['Delac_2 WTCT3', 'Delac_1 Kiln_Temperature_Zone_3_Prediction'], color_discrete_map={'Delac_2 WTCT3':'blue', 'Delac_2 Kiln_Temperature_Zone_3_Prediction':'red'})
-        st.write(fig)
+        fig = px.line(PI_df, x=PI_df.index, y=['Delac_2 WTCT3', 'Delac_2 Kiln_Temperature_Zone_3_Prediction'], color_discrete_map={'Delac_2 WTCT3':'#3bd6ae', 'Delac_2 Kiln_Temperature_Zone_3_Prediction':'#0000ff'})
+        # fig.add_hline(y=430, line_color='red')
+        fig.add_hrect(y0=425, y1=435, line_width=0, fillcolor="red", opacity=0.05)
+        fig.add_hline(y=PI_df['Delac_2 WTCT3'].mean(), line_dash='dash', line_color='black')
+        st.plotly_chart(fig)
 
     with Delac_1_z4_true_vs_predict_chart:
         st.markdown("### Delac_1_Z4 True vs Predict")
-        fig = px.line(PI_df, x=PI_df.index, y=['Delac_1 WTCT4', 'Delac_1 Kiln_Temperature_Zone_4_Prediction'], color_discrete_map={'Delac_1 WTCT4':'blue', 'Delac_1 Kiln_Temperature_Zone_4_Prediction':'red'})
-        st.write(fig)
+        fig = px.line(PI_df, x=PI_df.index, y=['Delac_1 WTCT4', 'Delac_1 Kiln_Temperature_Zone_4_Prediction'], color_discrete_map={'Delac_1 WTCT4':'#3bd6ae', 'Delac_1 Kiln_Temperature_Zone_4_Prediction':'#0000ff'})
+        # fig.add_hline(y=535, line_color='red')
+        fig.add_hrect(y0=530, y1=540, line_width=0, fillcolor="red", opacity=0.05)
+        fig.add_hline(y=PI_df['Delac_1 WTCT4'].mean(), line_dash='dash', line_color='black')
+        st.plotly_chart(fig)
 
     with Delac_2_z4_true_vs_predict_chart:
         st.markdown("### Delac_2_Z4 True vs Predict")
-        fig = px.line(PI_df, x=PI_df.index, y=['Delac_2 WTCT4', 'Delac_2 Kiln_Temperature_Zone_4_Prediction'], color_discrete_map={'Delac_2 WTCT4':'blue', 'Delac_2 Kiln_Temperature_Zone_4_Prediction':'red'})
-        st.write(fig)
+        fig = px.line(PI_df, x=PI_df.index, y=['Delac_2 WTCT4', 'Delac_2 Kiln_Temperature_Zone_4_Prediction'], color_discrete_map={'Delac_2 WTCT4':'#3bd6ae', 'Delac_2 Kiln_Temperature_Zone_4_Prediction':'#0000ff'})
+        # fig.add_hline(y=535, line_color='red')
+        fig.add_hrect(y0=530, y1=540, line_width=0, fillcolor="red", opacity=0.05)
+        fig.add_hline(y=PI_df['Delac_2 WTCT4'].mean(), line_dash='dash', line_color='black')
+        st.plotly_chart(fig)
 
     Delac_1_z3_standard_deviation_chart, Delac_2_z3_standard_deviation_chart = st.columns(2)
     Delac_1_z4_standard_deviation_chart, Delac_2_z4_standard_deviation_chart = st.columns(2)
@@ -99,7 +115,7 @@ with placeholder.container():
         colors = ['#2BCDC1', '#F66095']
         # Create distplot with curve_type set to 'kde'
         fig = ff.create_distplot(hist_data, group_labels, show_hist=False, colors=colors, curve_type='kde')
-        st.write(fig)
+        st.plotly_chart(fig)
 
     with Delac_2_z3_standard_deviation_chart:
         st.markdown("### Delac_2 z3 Standard deviation")
@@ -108,7 +124,7 @@ with placeholder.container():
         colors = ['#2BCDC1', '#F66095']
         # Create distplot with curve_type set to 'kde'
         fig = ff.create_distplot(hist_data, group_labels, show_hist=False, colors=colors, curve_type='kde')
-        st.write(fig)
+        st.plotly_chart(fig)
 
     with Delac_1_z4_standard_deviation_chart:
         st.markdown("### Delac_1 z4 Standard deviation")
@@ -117,7 +133,7 @@ with placeholder.container():
         colors = ['#2BCDC1', '#F66095']
         # Create distplot with curve_type set to 'kde'
         fig = ff.create_distplot(hist_data, group_labels, show_hist=False, colors=colors, curve_type='kde')
-        st.write(fig)
+        st.plotly_chart(fig)
 
     with Delac_2_z4_standard_deviation_chart:
         st.markdown("### Delac_2 z4 Standard deviation")
@@ -126,4 +142,4 @@ with placeholder.container():
         colors = ['#2BCDC1', '#F66095']
         # Create distplot with curve_type set to 'kde'
         fig = ff.create_distplot(hist_data, group_labels, show_hist=False, colors=colors, curve_type='kde')
-        st.write(fig)
+        st.plotly_chart(fig)
